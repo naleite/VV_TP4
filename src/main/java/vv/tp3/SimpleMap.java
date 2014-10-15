@@ -29,13 +29,32 @@ public class SimpleMap<K,V> implements Map<K,V> {
 
     @Override
     public V get(Object key) {
-        return valueList.get(keyList.indexOf(key));
+        int index = keyList.indexOf(key);
+        if(index == -1)
+        {
+            return null;
+        }
+        else
+        {
+            return valueList.get(index);
+        }
+
     }
 
     @Override
     public V put(K key, V value) {
-        keyList.add(key);
-        valueList.add(value);
+
+        int index = keyList.indexOf(key);
+        if(index!= -1)
+        {
+            valueList.set(index, value);
+        }
+        else
+        {
+            keyList.add(key);
+            valueList.add(value);
+
+        }
         return value;
     }
 
@@ -97,5 +116,35 @@ public class SimpleMap<K,V> implements Map<K,V> {
             s.add(e);
         }
         return s;
+    }
+
+    @Override //redefinition de la methode equals
+    public boolean equals(Object o)
+    {
+        //recupere la deuxieme
+        Map<K, V> m2 = (Map<K, V>) o;
+        Iterator iterator = keyList.iterator();
+
+        //on regarde si le size des deux maps sont égaux
+        if(m2.size() != this.size())
+        {
+            return false;
+        }
+        while(iterator.hasNext())
+        {
+            K key   =(K) iterator.next();
+           if(m2.keySet().contains(key))
+           {
+               V val2 = m2.get(key);
+               V val = this.get(key);
+               if(!val2.equals(val))
+               {
+                    return false;
+               }
+           }
+
+        }
+
+        return true;
     }
 }
