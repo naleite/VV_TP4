@@ -22,29 +22,38 @@ public class BiMap<K,V> extends SimpleMap<K,V> {
     public K removeValue(Object key) {
 
 
-        return null;
+        int index = valueList.indexOf(key);
+        if(index==-1) //si le key n'existe pas
+        {
+            return null;
+        }
+        else
+        {
+            valueList.remove(index);
+            K elt = keyList.get(index);
+            keyList.remove(index);
+            return elt;
+        }
+
     }//
 
     @Override
     public V put(K key, V value)
     {
-        int index =valueList.indexOf(value);
+
+        this.remove(key);
+
+        int index= valueList.indexOf(value);
         if(index != -1)
         {
-            keyList.set(index, key);
+            valueList.remove(index);
+            keyList.remove(index);
         }
-        else
-        {
-            int indexk =keyList.indexOf(value);
-            if(indexk != -1)
-            {
-                valueList.set(indexk, value);
-            }
-            else
-            {
-                super.put(key, value);
-            }
-        }
+
+
+        super.put(key, value);
+
         return value;
     }
+
 }

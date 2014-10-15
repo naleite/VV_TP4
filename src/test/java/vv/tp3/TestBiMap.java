@@ -50,7 +50,8 @@ public class TestBiMap extends TestMap {
     }
 
     @Test
-    public void testGetByValue() {
+    public void testGetByValue()
+    {
         BiMap biMap = (BiMap) map;
         biMap.put("1", "1");
         biMap.put("2", "12");
