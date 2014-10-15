@@ -147,4 +147,10 @@ public class SimpleMap<K,V> implements Map<K,V> {
 
         return true;
     }
+
+    @Override
+    public int hashCode()
+    {
+        return this.entrySet().hashCode();
+    }
 }
