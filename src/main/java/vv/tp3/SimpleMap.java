@@ -1,5 +1,7 @@
 package vv.tp3;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.*;
 
 public class SimpleMap<K,V> implements Map<K,V> {
@@ -106,16 +108,9 @@ public class SimpleMap<K,V> implements Map<K,V> {
 
     @Override
     public Set<Entry<K, V>> entrySet() {
-        Set s = new HashSet();
-        Iterator iterator = keyList.iterator();
-        while(iterator.hasNext())
-        {
-            K key   =(K) iterator.next();
-            V value =get(key);
-            Entry<K,V> e = new AbstractMap.SimpleEntry<K, V>(key, value);
-            s.add(e);
-        }
-        return s;
+
+        throw new NotImplementedException();
+
     }
 
     @Override //redefinition de la methode equals
@@ -151,6 +146,22 @@ public class SimpleMap<K,V> implements Map<K,V> {
     @Override
     public int hashCode()
     {
-        return this.entrySet().hashCode();
+        return this.myEntrySet().hashCode();
     }
+
+    private Set<Entry<K, V>> myEntrySet()
+    {
+        Set s = new HashSet();
+        Iterator iterator = keyList.iterator();
+        while(iterator.hasNext())
+        {
+            K key   =(K) iterator.next();
+            V value =get(key);
+            Entry<K,V> e = new AbstractMap.SimpleEntry<K, V>(key, value);
+            s.add(e);
+        }
+        return s;
+
+    }
+
 }
