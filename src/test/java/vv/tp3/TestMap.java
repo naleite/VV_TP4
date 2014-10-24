@@ -274,4 +274,6 @@ public class TestMap<K, V> {
     protected Map<String, Integer> getNewMap() {
         return new SimpleMap<String, Integer>();
     }
+
+
 }

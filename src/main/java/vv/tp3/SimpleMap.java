@@ -9,6 +9,7 @@ public class SimpleMap<K,V> implements Map<K,V> {
     List<K> keyList = new ArrayList();
     List<V> valueList = new ArrayList();
 
+
     @Override
     public int size() {
         return keyList.size();
@@ -127,7 +128,7 @@ public class SimpleMap<K,V> implements Map<K,V> {
         }
         while(iterator.hasNext())
         {
-            K key   =(K) iterator.next();
+            K key =(K) iterator.next();
            if(m2.keySet().contains(key))
            {
                V val2 = m2.get(key);
